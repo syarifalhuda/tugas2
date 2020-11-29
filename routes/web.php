@@ -1,52 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerandaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/404', function () {
-    return view('404');
-});
-Route::get('/blog-single', function () {
-    return view('blog-single');
-});Route::get('/blog', function () {
-    return view('blog');
-});Route::get('/cart', function () {
-    return view('cart'); 
-});Route::get('/checkout', function () {
-    return view('checkout');
-});Route::get('/contact', function () {  
-    return view('contact');
-});Route::get('/contact-us', function () {
-    return view('contact-us');
-});Route::get('/index', function () {
-    return view('index');
-});Route::get('/login', function () {
-    return view('login');
-});Route::get('/shop', function () {
-    return view('shop');
-});Route::get('/admin', function () {
-    return view('admin.admin');
-});;Route::get('/checkout2', function () {
-    return view('checkout2');
-});;;Route::get('/codes2', function () {
-    return view('codes2');
-});;;Route::get('/mail2', function () {
-    return view('mail2');
-});;;Route::get('/products2', function () {
-    return view('products2');
-});;;Route::get('/products12', function () {
-    return view('products12');
-});
+
+Route::get('/', [BerandaController::class, 'showBeranda']);
+
+Route::get('/artikel', [BerandaController::class, 'showArtikel']);
+
+Route::post('artikel/filter', [BerandaController::class, 'filter']);
+
+Route::get('/login', [BerandaController::class, 'showLogin']);
+
+Route::get('/registrasi', [BerandaController::class, 'showRegster']);
+
+Route::post('/login', [BerandaController::class, 'loginAction']);
+
+Route::post('/registrasi', [BerandaController::class, 'registerAction']);
+
+Route::get('/user', [BerandaController::class, 'showUser']);
+
+Route::get('/user/artikel/{id}', [BerandaController::class, 'showUserArtikel']);
+
+Route::get('artikel/add', [BerandaController::class, 'artikelAdd']);
+
+Route::put('artikel/add', [BerandaController::class, 'artikelAddAction']);
+
+Route::get('artikel/detail/{id}', [BerandaController::class, 'artikelDetail']);
+
+Route::get('artikel/edit/{id}', [BerandaController::class, 'artikelUpdate']);
+
+Route::post('artikel/edit/{id}', [BerandaController::class, 'artikelUpdateAction']);
+
+Route::get('artikel/hapus/{id}', [BerandaController::class, 'artikelHapus']);
+
+
